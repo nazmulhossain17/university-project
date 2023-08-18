@@ -1,7 +1,5 @@
 # University Project By Syed Nazmul Hossain
 
-Brief description or tagline of your project.
-
 ## Table of Contents
 
 - [Introduction](#introduction)
