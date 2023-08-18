@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import config from '../../config';
+import { IGenericErrorMessage } from '../../interfaces/error';
 
 const globalErrorHandler = (
   err,
@@ -7,11 +8,11 @@ const globalErrorHandler = (
   res: Response,
   next: NextFunction,
 ) => {
-  type IGenericErrorMessage = {};
   let statusCode = 500;
   let message = 'Something went wrong !!';
-  let errorMessages = [];
-  res.status().json({
+  let errorMessages: IGenericErrorMessage[] = [];
+
+  res.status(statusCode).json({
     success: false,
     message,
     errorMessages,
