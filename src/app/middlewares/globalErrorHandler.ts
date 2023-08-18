@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import config from '../../config';
 import { IGenericErrorMessage } from '../../interfaces/error';
+import handleValidationError from '../../errors/handleValidationError';
 
 const globalErrorHandler = (
   err,

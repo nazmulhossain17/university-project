@@ -6,20 +6,23 @@ const handleValidationError = (
   err: mongoose.Error.ValidationError,
 ): IGenericErrorResponse => {
   const errors: IGenericErrorMessage[] = Object.values(err.errors).map(
-    (el: mongoose.Error.ValidationError | mongoose.Error.CastError) => {
+    (el: mongoose.Error.ValidatorError | mongoose.Error.CastError) => {
       return {
-        path: el?.path,
-        message: el?.message,
+        path: el.path,
+        message: el.message,
       };
     },
   );
 
   const statusCode = 400;
-  return {
+  const message = 'Validation Error';
+  const errorResponse: IGenericErrorResponse = {
     statusCode,
-    message: 'Validation Error',
+    message,
     errorMessages: errors,
   };
+
+  return errorResponse;
 };
 
 export default handleValidationError;
