@@ -1,5 +1,6 @@
 import { RequestHandler } from 'express';
 import { UserService } from './user.service';
+import { z } from 'zod';
 
 const createUsers: RequestHandler = async (req, res, next) => {
   try {
