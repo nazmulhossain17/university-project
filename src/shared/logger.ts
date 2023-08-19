@@ -21,7 +21,7 @@ const logger = createLogger({
         process.cwd(),
         'logs',
         'winston',
-        'errors',
+        'success',
         'uni-%DATE%-success.log',
       ),
       datePattern: 'YYYY-MM-DD-HH',
