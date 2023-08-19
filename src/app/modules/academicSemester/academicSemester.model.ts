@@ -42,7 +42,8 @@ const AcademicSemesterSchema = new Schema<IAcademicSemester>(
 );
 
 const AcademicSemester = model<IAcademicSemester, AcademicSemesterModel>(
-  'User',
+  'AcademicSemester', // Use a unique name here
   AcademicSemesterSchema,
 );
+
 export default AcademicSemester;
