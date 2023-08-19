@@ -4,6 +4,7 @@ import userRouter from './app/modules/users/user.route';
 import globalErrorHandler from './app/middlewares/globalErrorHandler';
 import { UserService } from './app/modules/users/user.service';
 import ApiErrors from './errors/ApiErrors';
+import { AcademicSemesterRoutes } from './app/modules/academicSemester/academicSemester.route';
 
 const app = express();
 
@@ -44,5 +45,6 @@ app.post('/create-user', async (req: Request, res: Response) => {
 
 // Use the userRouter for user-related routes
 app.use('/api/v1', userRouter);
+app.use('/api/v1/academic-semesters', AcademicSemesterRoutes);
 
 export default app;
