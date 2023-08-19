@@ -4,8 +4,14 @@ import mongoose from 'mongoose';
 import { errorlogger, logger } from './shared/logger';
 import { Server } from 'http';
 
+process.on('uncaughtException', error => {
+  errorlogger.error(error);
+  process.exit(1);
+});
+
+let server: Server;
+
 const connectDB = async () => {
-  let server: Server;
   if (config.dbURL) {
     try {
       await mongoose.connect(config.dbURL);
@@ -33,3 +39,10 @@ const connectDB = async () => {
 };
 
 connectDB();
+
+process.on('SIGTERM', () => {
+  logger.info('SIGTERM is received');
+  if (server) {
+    server.close();
+  }
+});

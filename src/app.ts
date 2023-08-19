@@ -16,7 +16,7 @@ app.use(globalErrorHandler);
 
 // Root route (optional)
 app.get('/', async (req: Request, res: Response) => {
-  Promise.reject(new Error('Unhandle Promise rejection'));
+  throw new Error('Error logger');
 });
 
 // User creation route
