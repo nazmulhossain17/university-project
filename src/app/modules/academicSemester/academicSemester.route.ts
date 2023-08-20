@@ -1,14 +1,20 @@
 import express from 'express';
-import validateRequest from '../../middlewares/validateRequest';
 import { AcademicSemesterValidation } from './academicSemester.validation';
 import { AcademicSemesterController } from './academicSemester.controller';
+import validateRequest from '../../middlewares/validateRequest';
 
-const router = express.Router();
+const urlpath = express.Router();
 
-router.post(
-  '/create-user',
+urlpath.post(
+  '/create-semester', // Change the route path to differentiate from the user creation route
   validateRequest(AcademicSemesterValidation.createAcademicSemesterZodSchema),
   AcademicSemesterController.createSemester,
 );
 
-export const AcademicSemesterRoutes = router;
+// urlpath.get('/hello', (req, res) => {
+//   res.send('nice');
+// });
+
+urlpath.get('/', AcademicSemesterController.getAllSemesters);
+
+export const AcademicSemesterRoutes = urlpath;
