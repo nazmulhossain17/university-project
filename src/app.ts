@@ -1,9 +1,8 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
-import userRouter from './app/modules/users/user.route';
 import globalErrorHandler from './app/middlewares/globalErrorHandler';
 import { UserService } from './app/modules/users/user.service';
-import { AcademicSemesterRoutes } from './app/modules/academicSemester/academicSemester.route';
+import routes from './app/routes';
 
 const app = express();
 
@@ -14,9 +13,11 @@ app.use(express.urlencoded({ extended: true }));
 // Set up global error handler before routes
 app.use(globalErrorHandler);
 
+app.use('/api/v1/', routes);
+
 // Root route (optional)
 app.get('/', async (req: Request, res: Response) => {
-  res.send('Hi')
+  res.send('Hi');
 });
 
 // User creation route
@@ -41,9 +42,5 @@ app.post('/create-user', async (req: Request, res: Response) => {
     });
   }
 });
-
-// Use the userRouter for user-related routes
-app.use('/api/v1', userRouter);
-app.use('/api/v1/academic-semesters', AcademicSemesterRoutes);
 
 export default app;
