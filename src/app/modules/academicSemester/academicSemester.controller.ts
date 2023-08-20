@@ -5,6 +5,7 @@ import sendResponse from '../../../shared/sendResponse';
 import httpStatusCode from 'http-status-codes';
 import pick from '../../../shared/pick';
 import { paginationFields } from '../../../constants/pagination';
+import { IAcademicSemester } from './academicSemester.interface';
 
 const createSemester = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -24,22 +25,17 @@ const createSemester = catchAsync(
 
 const getAllSemesters = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    // const paginationOptions = {
-    //   page: Number(req.query.page),
-    //   limit: Number(req.query.limit),
-    //   sortBy: req.query.sortBy,
-    //   sortOrder: req.query.sortOrder,
-    // };
     const paginationOptions = pick(req.query, paginationFields);
     console.log(paginationOptions);
     const result =
       await AcademicSemesterService.getAllSemesters(paginationOptions);
 
-    sendResponse(res, {
+    sendResponse<IAcademicSemester[]>(res, {
       statusCode: httpStatusCode.OK,
       success: true,
       message: 'Semester retrived successfully',
-      data: result,
+      meta: result.meta,
+      data: result.data,
     });
     next();
   },
