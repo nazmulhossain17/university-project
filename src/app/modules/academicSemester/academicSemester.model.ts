@@ -1,8 +1,5 @@
 import { Schema, model } from 'mongoose';
-import {
-  AcademicSemesterModel,
-  IAcademicSemester,
-} from './academicSemester.interface';
+import { IAcademicSemester } from './academicSemester.interface';
 import {
   academicSemesterCodes,
   academicSemesterMonths,
@@ -19,7 +16,7 @@ const AcademicSemesterSchema = new Schema<IAcademicSemester>(
       enum: academicSemesterTitles,
     },
     year: {
-      type: Number,
+      type: String,
       required: true,
     },
     code: {
@@ -43,13 +40,6 @@ const AcademicSemesterSchema = new Schema<IAcademicSemester>(
   },
 );
 
-const AcademicSemester = model<IAcademicSemester, AcademicSemesterModel>(
-  'AcademicSemester', // Use a unique name here
-  AcademicSemesterSchema,
-);
-
-export default AcademicSemester;
-
 // handeling same year and same semester
 AcademicSemesterSchema.pre('save', async function (next) {
   const isExists = await AcademicSemester.findOne({
@@ -61,3 +51,8 @@ AcademicSemesterSchema.pre('save', async function (next) {
   }
   next();
 });
+
+export const AcademicSemester = model<IAcademicSemester>(
+  'AcademicSemester',
+  AcademicSemesterSchema,
+);
