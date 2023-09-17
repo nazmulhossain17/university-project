@@ -109,6 +109,16 @@
             "date": 1692630022404,
             "name": "F:\\Level 2\\practice\\university-project\\logs\\winston\\errors\\uni-2023-08-21-21-error.log",
             "hash": "fdca24abfaa592be9d0a381bcc47f2368bc859a771193cb8f4ce69fc11eb3fd0"
+        },
+        {
+            "date": 1692710737472,
+            "name": "F:\\Level 2\\practice\\university-project\\logs\\winston\\errors\\uni-2023-08-22-19-error.log",
+            "hash": "2476ef01346540a22bb88736ecb7efb274feec0545a97509a40495ec0134c144"
+        },
+        {
+            "date": 1692714967322,
+            "name": "F:\\Level 2\\practice\\university-project\\logs\\winston\\errors\\uni-2023-08-22-20-error.log",
+            "hash": "09cce1dbb1bdb0ad6a618c941b89b8866ddf0727781c674032fe6c2e6b7cb249"
         }
     ],
     "hashType": "sha256"

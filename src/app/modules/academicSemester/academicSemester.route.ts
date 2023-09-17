@@ -15,6 +15,8 @@ urlpath.post(
 //   res.send('nice');
 // });
 
+urlpath.get('/:id', AcademicSemesterController.getSingleSemester);
+
 urlpath.get('/', AcademicSemesterController.getAllSemesters);
 
 export const AcademicSemesterRoutes = urlpath;

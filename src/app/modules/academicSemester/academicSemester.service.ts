@@ -3,7 +3,10 @@ import ApiError from '../../../errors/ApiErrors';
 import { paginaitonHelpers } from '../../../helper/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
-import { academicSemesterTitleCodeMapper } from './academicSemester.constant';
+import {
+  academicSemesterSearchableFields,
+  academicSemesterTitleCodeMapper,
+} from './academicSemester.constant';
 import {
   IAcademicSemester,
   IAcademicSemesterFilters,
@@ -20,13 +23,12 @@ const createSemester = async (
   return result;
 };
 
-const getAllSemesters = async (
+const getAllsemesters = async (
   filters: IAcademicSemesterFilters,
   paginationOptions: IPaginationOptions,
 ): Promise<IGenericResponse<IAcademicSemester[]>> => {
-  const { searchTerm } = filters;
+  const { searchTerm, ...filtersData } = filters;
 
-  const academicSemesterSearchableFields = ['title', 'code', 'year'];
   const andConditions = [];
 
   if (searchTerm) {
@@ -36,6 +38,16 @@ const getAllSemesters = async (
           $regex: searchTerm,
           $options: 'i',
         },
+      })),
+    });
+  }
+
+  console.log(Object.keys(filtersData));
+
+  if (Object.keys(filtersData).length) {
+    andConditions.push({
+      $and: Object.entries(filtersData).map(([field, value]) => ({
+        [field]: value,
       })),
     });
   }
@@ -74,7 +86,10 @@ const getAllSemesters = async (
     sortConditions[sortBy] = sortOrder;
   }
 
-  const result = await AcademicSemester.find({ $and: andConditions })
+  const whereCondition =
+    andConditions.length > 0 ? { $and: andConditions } : {};
+
+  const result = await AcademicSemester.find(whereCondition)
     .sort(sortConditions)
     .skip(skip)
     .limit(limit);
@@ -91,7 +106,15 @@ const getAllSemesters = async (
   };
 };
 
+const getSingleSemester = async (
+  id: string,
+): Promise<IAcademicSemester | null> => {
+  const result = await AcademicSemester.findById(id);
+  return result;
+};
+
 export const AcademicSemesterService = {
   createSemester,
-  getAllSemesters,
+  getAllsemesters,
+  getSingleSemester,
 };
