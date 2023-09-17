@@ -19,4 +19,6 @@ urlpath.get('/:id', AcademicSemesterController.getSingleSemester);
 
 urlpath.get('/', AcademicSemesterController.getAllSemesters);
 
+urlpath.patch('/:id', AcademicSemesterController.updateSemester);
+
 export const AcademicSemesterRoutes = urlpath;
