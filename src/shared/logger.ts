@@ -1,8 +1,10 @@
-import { createLogger, format, transports } from 'winston';
+/* eslint-disable no-undef */
 import path from 'path';
+import { createLogger, format, transports } from 'winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
-
 const { combine, timestamp, label, printf } = format;
+
+//Customm Log Format
 
 const myFormat = printf(({ level, message, label, timestamp }) => {
   const date = new Date(timestamp);
@@ -11,9 +13,10 @@ const myFormat = printf(({ level, message, label, timestamp }) => {
   const seconds = date.getSeconds();
   return `${date.toDateString()} ${hour}:${minutes}:${seconds} } [${label}] ${level}: ${message}`;
 });
+
 const logger = createLogger({
   level: 'info',
-  format: combine(label({ label: 'right meow!' }), timestamp(), myFormat),
+  format: combine(label({ label: 'PH' }), timestamp(), myFormat),
   transports: [
     new transports.Console(),
     new DailyRotateFile({
@@ -21,10 +24,10 @@ const logger = createLogger({
         process.cwd(),
         'logs',
         'winston',
-        'success',
-        'uni-%DATE%-success.log',
+        'successes',
+        'phu-%DATE%-success.log'
       ),
-      datePattern: 'YYYY-MM-DD-HH',
+      datePattern: 'YYYY-DD-MM-HH',
       zippedArchive: true,
       maxSize: '20m',
       maxFiles: '14d',
@@ -33,8 +36,8 @@ const logger = createLogger({
 });
 
 const errorlogger = createLogger({
-  level: 'info',
-  format: combine(label({ label: 'right meow!' }), timestamp(), myFormat),
+  level: 'error',
+  format: combine(label({ label: 'PH' }), timestamp(), myFormat),
   transports: [
     new transports.Console(),
     new DailyRotateFile({
@@ -43,9 +46,9 @@ const errorlogger = createLogger({
         'logs',
         'winston',
         'errors',
-        'uni-%DATE%-error.log',
+        'phu-%DATE%-error.log'
       ),
-      datePattern: 'YYYY-MM-DD-HH',
+      datePattern: 'YYYY-DD-MM-HH',
       zippedArchive: true,
       maxSize: '20m',
       maxFiles: '14d',

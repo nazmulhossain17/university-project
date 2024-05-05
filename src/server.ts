@@ -1,48 +1,39 @@
+import { Server } from 'http';
 import app from './app';
 import config from './config';
-import mongoose from 'mongoose';
 import { errorlogger, logger } from './shared/logger';
-import { Server } from 'http';
 
-process.on('uncaughtException', error => {
-  errorlogger.error(error);
-  process.exit(1);
-});
 
-let server: Server;
+async function bootstrap() {
 
-const connectDB = async () => {
-  if (config.dbURL) {
-    try {
-      await mongoose.connect(config.dbURL);
-      logger.info('Database Connected');
-      server = app.listen(config.Port, () => {
-        logger.info(`Server running on port ${config.Port}`);
-      });
-    } catch (error) {
-      logger.error(error);
-    }
-  } else {
-    logger.info('Database URL is undefined.');
-  }
-  process.on('unhandledRejection', error => {
-    console.log('unhandle rejection detected');
+  const server: Server = app.listen(config.port, () => {
+    logger.info(`Server running on port ${config.port}`);
+  });
+
+  const exitHandler = () => {
+
     if (server) {
       server.close(() => {
-        errorlogger.error(error);
-        process.exit(1);
+        logger.info('Server closed');
       });
-    } else {
-      process.exit(1);
+    }
+    process.exit(1);
+  };
+
+  const unexpectedErrorHandler = (error: unknown) => {
+    errorlogger.error(error);
+    exitHandler();
+  };
+
+  process.on('uncaughtException', unexpectedErrorHandler);
+  process.on('unhandledRejection', unexpectedErrorHandler);
+
+  process.on('SIGTERM', () => {
+    logger.info('SIGTERM received');
+    if (server) {
+      server.close();
     }
   });
-};
+}
 
-connectDB();
-
-process.on('SIGTERM', () => {
-  logger.info('SIGTERM is received');
-  if (server) {
-    server.close();
-  }
-});
+bootstrap();

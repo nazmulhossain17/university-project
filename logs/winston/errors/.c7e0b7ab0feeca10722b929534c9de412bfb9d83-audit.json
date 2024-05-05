@@ -1,0 +1,165 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\.c7e0b7ab0feeca10722b929534c9de412bfb9d83-audit.json",
+    "files": [
+        {
+            "date": 1711864489760,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-31-03-11-error.log",
+            "hash": "db5e3d76102f700c02ea0dc35940383956ba43e3ea95ef99fdfffabcb66aa54d"
+        },
+        {
+            "date": 1711865055318,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-31-03-12-error.log",
+            "hash": "7d243c9dd88bafbe15d37c69261d38d5803a72f1b9249555a5e9073b296b9520"
+        },
+        {
+            "date": 1711894865324,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-31-03-20-error.log",
+            "hash": "45a336157363913c645bb1ca4e1b6d10df4587b22f4a439ecd39c10cfac1a2a6"
+        },
+        {
+            "date": 1711897210569,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-31-03-21-error.log",
+            "hash": "062199fac1cb6cc103a6497c4b7342fcece4d0eb5de9208611d7830b9b15e71b"
+        },
+        {
+            "date": 1711946474069,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-01-04-10-error.log",
+            "hash": "e0f4d16c4b1a5bfb06e5b43a2766d922f08388938ba6b38127a04daae60b1230"
+        },
+        {
+            "date": 1711947741213,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-01-04-11-error.log",
+            "hash": "ff2176ab6b860d9304c3d92935e3e732652c152b916ee36b4ae558ed205e857d"
+        },
+        {
+            "date": 1711951593588,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-01-04-12-error.log",
+            "hash": "40dedbca0174b18089c70f1d102451ebdf61c36fd964b5beb05850ca564dee40"
+        },
+        {
+            "date": 1711975646025,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-01-04-18-error.log",
+            "hash": "953f384e0162051203eee78f9db850bd633ffd9973cc9aaf8ef5ee6009dc7997"
+        },
+        {
+            "date": 1712064126176,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-02-04-19-error.log",
+            "hash": "9f1bab9ecb83ee35245ca86295be17148969090a5cfe84b2191321becc142c06"
+        },
+        {
+            "date": 1712066474623,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-02-04-20-error.log",
+            "hash": "6ea76a19bb46b62b6a5141e8b09dd4ea1eaadd3c8a3811935455da7fad0e5d18"
+        },
+        {
+            "date": 1712070442400,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-02-04-21-error.log",
+            "hash": "8125145d827d194885bb4d74e4db86714079a88e9579d9dcf7ceb0d7cf73338b"
+        },
+        {
+            "date": 1712073611301,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-02-04-22-error.log",
+            "hash": "bc944c9be2e003e8a6ab325febb7018809436244773932bd316a3d802eccbf8f"
+        },
+        {
+            "date": 1712120050060,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-03-04-10-error.log",
+            "hash": "38b1740fa7ab73f73d7cdad14abd2dcd345c612917823d77bb4b7af5369a9d5c"
+        },
+        {
+            "date": 1712120904963,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-03-04-11-error.log",
+            "hash": "3d13746bdbecfc195553d6a6f1aade55028873f3288df2bed48851f2a00fc307"
+        },
+        {
+            "date": 1712124009033,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-03-04-12-error.log",
+            "hash": "c67d7195a717b8b6ebc7d37bac16a067470442015c95eb44676416e3f8477051"
+        },
+        {
+            "date": 1712293606803,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-05-04-11-error.log",
+            "hash": "37ea582aeec6a8dd7f024b83f6075b896d2f3a04c0d6fe43985283525f16c043"
+        },
+        {
+            "date": 1712299582815,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-05-04-12-error.log",
+            "hash": "3427d4a1a5cde26d02aa18a9a63ac6b8c7e596ed309af863adde52e272ddfa12"
+        },
+        {
+            "date": 1712323597153,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-05-04-19-error.log",
+            "hash": "381e35c69f366e9bd244a5e3f9da0e738234e23c3dcb4c61d262f109ebd2f1c5"
+        },
+        {
+            "date": 1712325805820,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-05-04-20-error.log",
+            "hash": "043f451f82aec7a3fc05dd49a5eff2d83bf879aba868cc7428c8ae4fbe3cd636"
+        },
+        {
+            "date": 1712331135755,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-05-04-21-error.log",
+            "hash": "804bc6d652bc2f338c6a44508ec7beb9d9a904954f0b6b68a1945fba3758aaaa"
+        },
+        {
+            "date": 1712466759381,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-07-04-11-error.log",
+            "hash": "c5de4aa323c1bd253284cdbaaa1ce41ca8a54ca1e87fd77592e1ab7ea88b212c"
+        },
+        {
+            "date": 1712470561997,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-07-04-12-error.log",
+            "hash": "7afc621619a65cb96c891f2467f3425b0a7966e148c399f70f8795359c11bed3"
+        },
+        {
+            "date": 1712481909388,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-07-04-15-error.log",
+            "hash": "d4a48f2e626f2d834351fbf9412ff2805621c9f1cb3406eedcb5e160aecf9836"
+        },
+        {
+            "date": 1712491554005,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-07-04-18-error.log",
+            "hash": "98068e1597b3128594ab9a346b0305382c80fa1122ed4b39a4a33bc607cb29c7"
+        },
+        {
+            "date": 1712500561216,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-07-04-20-error.log",
+            "hash": "1a00c2153ab51d529740fdccb752c3be1694d9107ff5bea3cc21f330326b439a"
+        },
+        {
+            "date": 1712503175194,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-07-04-21-error.log",
+            "hash": "81bbaf1cce389d25708310707b3ef739b67b9077a5fe2f936f962da7ca5003b8"
+        },
+        {
+            "date": 1712549955629,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-08-04-10-error.log",
+            "hash": "f477fda8727c786ecf68d3d6f499572ec93e4605430f3a20a140fe95a4de6bf9"
+        },
+        {
+            "date": 1712557077342,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-08-04-12-error.log",
+            "hash": "ea11e35e52dc3df4cb1c23bd349fdc794f6e6b9711e60cf398020b89c2e8069c"
+        },
+        {
+            "date": 1712576139704,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-08-04-17-error.log",
+            "hash": "2c2f4127169600c5dbc0c8e483e44df25305de143c8e259018599d8421ce41dc"
+        },
+        {
+            "date": 1712634718268,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-09-04-09-error.log",
+            "hash": "14d9ee5c27a7013ff848c0b4fc0e26e3ad6646bcd361ab35954ce56916ff7cee"
+        },
+        {
+            "date": 1712635316597,
+            "name": "D:\\university-management-core-service-starter\\logs\\winston\\errors\\phu-2024-09-04-10-error.log",
+            "hash": "6fb74b411df4d68f75556d715c68e8db05ee23fea8c95edde0cd84259d865474"
+        }
+    ],
+    "hashType": "sha256"
+}

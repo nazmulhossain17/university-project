@@ -1,148 +1,86 @@
-import { SortOrder } from 'mongoose';
-import ApiError from '../../../errors/ApiErrors';
-import httpStatus from 'http-status-codes';
-import { paginaitonHelpers } from '../../../helper/paginationHelper';
+import { AcademicSemester, Prisma } from '@prisma/client';
+import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
-import {
-  academicSemesterSearchableFields,
-  academicSemesterTitleCodeMapper,
-} from './academicSemester.constant';
-import {
-  IAcademicSemester,
-  IAcademicSemesterFilters,
-} from './academicSemester.interface';
-import { AcademicSemester } from './academicSemester.model';
+import prisma from '../../../shared/prisma';
+import { AcademicSemesterSearchAbleFields } from './academicSemester.contants';
+import { IAcademicSemesterFilterRequest } from './academicSemester.interface';
 
-const createSemester = async (
-  payload: IAcademicSemester,
-): Promise<IAcademicSemester> => {
-  if (academicSemesterTitleCodeMapper[payload.title] !== payload.code) {
-    throw new ApiError(400, 'Invalid Semester Code');
-  }
-  const result = await AcademicSemester.create(payload);
+const insertIntoDB = async (
+  data: AcademicSemester
+): Promise<AcademicSemester> => {
+  const result = await prisma.academicSemester.create({ data });
   return result;
 };
 
-const getAllsemesters = async (
-  filters: IAcademicSemesterFilters,
-  paginationOptions: IPaginationOptions,
-): Promise<IGenericResponse<IAcademicSemester[]>> => {
+const getAllFromDB = async (
+  filters: IAcademicSemesterFilterRequest,
+  options: IPaginationOptions
+): Promise<IGenericResponse<AcademicSemester[]>> => {
+  const { page, limit, skip } = paginationHelpers.calculatePagination(options);
   const { searchTerm, ...filtersData } = filters;
-
+  console.log(options);
   const andConditions = [];
-
   if (searchTerm) {
     andConditions.push({
-      $or: academicSemesterSearchableFields.map(field => ({
+      OR: AcademicSemesterSearchAbleFields.map(field => ({
         [field]: {
-          $regex: searchTerm,
-          $options: 'i',
+          contains: searchTerm,
+          mode: 'insensitive',
         },
       })),
     });
   }
 
-  console.log(Object.keys(filtersData));
-
-  if (Object.keys(filtersData).length) {
+  if (Object.keys(filtersData).length > 0) {
     andConditions.push({
-      $and: Object.entries(filtersData).map(([field, value]) => ({
-        [field]: value,
+      AND: Object.keys(filtersData).map(key => ({
+        [key]: {
+          equals: (filtersData as any)[key], // Applying 'equals' filter for each key
+        },
       })),
     });
   }
 
-  // const andConditions = [
-  //   {
-  //     $or: [
-  //       {
-  //         title: {
-  //           $regex: searchTerm,
-  //           $options: 'i',
-  //         },
-  //       },
-  //       {
-  //         code: {
-  //           $regex: searchTerm,
-  //           $options: 'i',
-  //         },
-  //       },
-  //       {
-  //         year: {
-  //           $regex: searchTerm,
-  //           $options: 'i',
-  //         },
-  //       },
-  //     ],
-  //   },
-  // ];
+  const whereConditions: Prisma.AcademicSemesterWhereInput =
+    andConditions.length > 0 ? { AND: andConditions } : {};
 
-  const { page, limit, skip, sortBy, sortOrder } =
-    paginaitonHelpers.calculatePagination(paginationOptions);
+  try {
+    const result = await prisma.academicSemester.findMany({
+      where: whereConditions,
+      skip,
+      take: limit,
+    });
+    const total = await prisma.academicSemester.count({
+      where: whereConditions,
+    });
 
-  const sortConditions: { [key: string]: SortOrder } = {};
-
-  if (sortBy && sortOrder) {
-    sortConditions[sortBy] = sortOrder;
+    return {
+      meta: {
+        total,
+        page,
+        limit,
+      },
+      data: result,
+    };
+  } catch (error) {
+    // Handle error appropriately
+    console.error('Error fetching academic semesters:', error);
+    throw new Error('Error fetching academic semesters');
   }
+};
 
-  const whereCondition =
-    andConditions.length > 0 ? { $and: andConditions } : {};
-
-  const result = await AcademicSemester.find(whereCondition)
-    .sort(sortConditions)
-    .skip(skip)
-    .limit(limit);
-
-  const total = await AcademicSemester.countDocuments();
-
-  return {
-    meta: {
-      page,
-      limit,
-      total,
+const getDataById = async (id: string): Promise<AcademicSemester | null> => {
+  const result = await prisma.academicSemester.findUnique({
+    where: {
+      id,
     },
-    data: result,
-  };
-};
-
-const getSingleSemester = async (
-  id: string,
-): Promise<IAcademicSemester | null> => {
-  const result = await AcademicSemester.findById(id);
-  return result;
-};
-
-const updateSemester = async (
-  id: string,
-  payload: Partial<IAcademicSemester>,
-): Promise<IAcademicSemester | null> => {
-  if (
-    payload.title &&
-    payload.code &&
-    academicSemesterTitleCodeMapper[payload.title] !== payload.code
-  ) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'Invalid Semester Code');
-  }
-
-  const result = await AcademicSemester.findOneAndUpdate({ _id: id }, payload, {
-    new: true,
   });
   return result;
 };
 
-const deleteSemester = async (
-  id: string,
-): Promise<IAcademicSemester | null> => {
-  const result = await AcademicSemester.findByIdAndDelete(id);
-  return result;
-};
-
 export const AcademicSemesterService = {
-  createSemester,
-  getAllsemesters,
-  getSingleSemester,
-  updateSemester,
-  deleteSemester,
+  insertIntoDB,
+  getAllFromDB,
+  getDataById,
 };
